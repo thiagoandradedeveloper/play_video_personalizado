@@ -85,7 +85,10 @@ window.onload = function(){
         if(video.muted == true) video.muted = false;
     })        
     vs .addEventListener('click',()=>{
-        video.volume -= 0.01;
+        
+        video.volume -= 0.01;        
+        if(video.volume <= 0 || video.volume < 0.01)
+            video.volume = 0;       
         if(video.muted == true) video.muted = false;
     })
     vss.addEventListener('click',()=>{
