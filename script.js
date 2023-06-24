@@ -1,20 +1,19 @@
 window.onload = function(){
 
-    let video  = document.getElementById('myVideo');
-    let play   = document.getElementById('play');
-    let pause  = document.getElementById('pause');
-    let reload = document.getElementById('reload');
-    let line   = document.getElementById('line');
-    let mud    = document.getElementById('mud');
-    let time   = document.getElementById('timeCurrent');
-    let volume = document.getElementById('volume');
-    let vm = document.getElementById('volume+');
-    let vmm = document.getElementById('volume++');
-    let vs = document.getElementById('volume-');
-    let vss = document.getElementById('volume--');
-    let controles = document.getElementById('controles');
-    line.max   = video.duration;
-    video.volume = 0.5;
+    let video     = document.getElementById('myVideo');
+    let play      = document.getElementById('play');
+    let pause     = document.getElementById('pause');
+    let reload    = document.getElementById('reload');
+    let line      = document.getElementById('line'); //input type="range"
+    let mud       = document.getElementById('mud');
+    let time      = document.getElementById('timeCurrent');
+    let volume    = document.getElementById('volume');
+    let vm        = document.getElementById('volume+');
+    let vmm       = document.getElementById('volume++');
+    let vs        = document.getElementById('volume-');
+    let vss       = document.getElementById('volume--');
+    line.max      = video.duration;
+    video.volume  = 0.5;
     
     let playCondicao = false;
     video.addEventListener('click',()=>{
@@ -44,7 +43,7 @@ window.onload = function(){
         }
     })
     reload.addEventListener('click',()=>{
-        video.pause()
+        video.pause();
         video.currentTime = 0;
     })
     mudar = true
