@@ -71,7 +71,7 @@ window.onload = function(){
             volume.innerText = Math.floor(video.volume*100);
         }
     })
-    vm .addEventListener('click',()=>{
+    vm.addEventListener('click',()=>{
         video.volume += 0.01;
         if(video.muted == true) video.muted = false;
     })
@@ -84,8 +84,7 @@ window.onload = function(){
         }
         if(video.muted == true) video.muted = false;
     })        
-    vs .addEventListener('click',()=>{
-        
+    vs.addEventListener('click',()=>{        
         video.volume -= 0.01;        
         if(video.volume <= 0 || video.volume < 0.01)
             video.volume = 0;       
