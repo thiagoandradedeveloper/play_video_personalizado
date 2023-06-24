@@ -66,9 +66,16 @@ window.onload = function(){
         video.currentTime = line.value;
     })
     video.addEventListener('volumechange',()=>{
-        volume.innerText = Math.floor(video.volume*100);
+        if(video.muted == true){
+            volume.innerText = '0';
+        } else {
+            volume.innerText = Math.floor(video.volume*100);
+        }
     })
-    vm .addEventListener('click',()=>video.volume += 0.01)
+    vm .addEventListener('click',()=>{
+        video.volume += 0.01;
+        if(video.muted == true) video.muted = false;
+    })
     vmm.addEventListener('click',()=>{
         if(video.volume < 1){
             if(video.volume >= 0.9)
@@ -76,9 +83,14 @@ window.onload = function(){
             else
                 video.volume += 0.1;
         }
+        if(video.muted == true) video.muted = false;
     })        
-    vs .addEventListener('click',()=>video.volume -= 0.01)
+    vs .addEventListener('click',()=>{
+        video.volume -= 0.01;
+        if(video.muted == true) video.muted = false;
+    })
     vss.addEventListener('click',()=>{
+        if(video.muted == true) video.muted = false;
         if(video.volume <= 0.1)
             video.volume = 0;
         else
