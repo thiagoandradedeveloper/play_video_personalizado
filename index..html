@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <video src="video.mp4" id="myVideo"></video><br>
+    <div class="controles">
+        <input type="range" min="0" max="100" muted step="1" id="line" value="0"><br>
+        <button id="play">Play</button>
+        <button id="pause">Pause</button>
+        <button id="reload">Reload</button>
+        <button id="mud">Muted</button>
+        <button id="volume+">+</button>
+        <button id="volume++">++</button>
+        <button id="volume-">-</button>
+        <button id="volume--">--</button><br><br>
+        Time Corrente: <span id="timeCurrent">0</span>
+        Volume: <span id="volume">0</span>
+    </div>
+</body>
+</html>
