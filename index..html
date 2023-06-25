@@ -8,6 +8,8 @@
     <script src="script.js"></script>
 </head>
 <body>
+    <input type="file" id="fileInput"><br>
+    <div id="titulo"></div>
     <video src="video.mp4" id="myVideo"></video><br>
     <div class="controles">
         <input type="range" min="0" max="100" muted step="1" id="line" value="0"><br>
@@ -15,11 +17,14 @@
         <button id="pause">Pause</button>
         <button id="reload">Reload</button>
         <button id="mud">Muted</button>
+        <button id="volume-">-</button>
+        <button id="volume--">--</button>
         <button id="volume+">+</button>
         <button id="volume++">++</button>
-        <button id="volume-">-</button>
-        <button id="volume--">--</button><br><br>
-        Time Corrente: <span id="timeCurrent">0</span>
+        <button id="full">FullScreen</button>
+        <br><br>
+        Time Corrente: <span id="timeCurrent">0:00</span>
+        / <span id="tempoTotal">0:00</span><br>
         Volume: <span id="volume">0</span>
     </div>
 </body>

@@ -1,5 +1,6 @@
 window.onload = function(){
 
+    var fileInput = document.getElementById('fileInput');
     let video     = document.getElementById('myVideo');
     let play      = document.getElementById('play');
     let pause     = document.getElementById('pause');
@@ -12,9 +13,78 @@ window.onload = function(){
     let vmm       = document.getElementById('volume++');
     let vs        = document.getElementById('volume-');
     let vss       = document.getElementById('volume--');
+    let tempoTotal= document.getElementById('tempoTotal');
+    let full      = document.getElementById('full');
+    let titulo    = document.getElementById('titulo');
     line.max      = video.duration;
     video.volume  = 0.5;
-    
+    tempoTotal.innerText = ajustarTime(Math.floor(video.duration));
+
+    // Aumentar a velocidade de reprodução
+    video.playbackRate = 2.0;
+
+    // Diminuir a velocidade de reprodução
+    video.playbackRate = 0.5;
+
+    // Diminuir a velocidade de reprodução
+    video.playbackRate = 1.0;
+
+    console.log('Largura do quadro de vídeo: ' + video.videoWidth 
+                + ' pixels');
+    console.log('Altura do quadro de vídeo: '  + video.videoHeight 
+                + ' pixels');
+    console.log('Taxa de quadros do vídeo: ' + video.videoPlaybackRate 
+                + ' fps');
+
+    fileInput.addEventListener('change', function(event) {
+        var file = event.target.files[0];
+        console.log(file.size)
+        console.log(file.name)
+        console.log(file.type)
+        var videoURL = URL.createObjectURL(file);
+        video.src = videoURL;
+        video.addEventListener('loadeddata',()=>{
+            line.max = video.duration;
+            titulo.innerText = file.name;
+            tempoTotal.innerText = ajustarTime(Math.floor(video.duration));
+            proporcao = video.videoHeight / video.videoWidth
+            let w = video.videoWidth;
+            let h = video.videoHeight;
+            if(w >= 850){
+                w = 850;
+                h = Math.floor(850 * proporcao)
+            }
+            video.style.width  = (w-1)  + 'px';
+            video.style.height = h + 'px';
+            video.style.top = '10px';
+            video.play();
+        })
+    });
+    function fullScreen(){
+        //fullscreen documento
+        /*if (document.documentElement.requestFullscreen) {
+            document.documentElement.requestFullscreen();
+        } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+            document.documentElement.mozRequestFullScreen();
+        } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari, Opera
+            document.documentElement.webkitRequestFullscreen();
+        } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+            document.documentElement.msRequestFullscreen();
+        }*/
+        //fullscreen video
+        if (video.requestFullscreen) {
+            video.requestFullscreen();
+        } else if (video.mozRequestFullScreen) { // Firefox
+            video.mozRequestFullScreen();
+        } else if (video.webkitRequestFullscreen) { // Chrome, Safari, Opera
+            video.webkitRequestFullscreen();
+        } else if (video.msRequestFullscreen) { // IE/Edge
+            video.msRequestFullscreen();
+        }
+    }
+    full.addEventListener('click',()=>fullScreen())
+    video.addEventListener('dblclick',()=>fullScreen())
+
     let playCondicao = false;
     video.addEventListener('click',()=>{
         if(playCondicao){ 
@@ -43,7 +113,7 @@ window.onload = function(){
         }
     })
     reload.addEventListener('click',()=>{
-        video.pause();
+        video.play();
         video.currentTime = 0;
     })
     mudar = true
@@ -117,16 +187,22 @@ window.onload = function(){
 }
 /*
 
-Existem vários eventos relacionados a vídeos que podem ser usados em JavaScript para controlar e interagir com elementos de vídeo HTML5. Aqui estão alguns dos principais eventos de vídeo:
+Existem vários eventos relacionados a vídeos que podem ser usados em 
+JavaScript para controlar e interagir com elementos de vídeo HTML5. 
+Aqui estão alguns dos principais eventos de vídeo:
 
 play: Acionado quando o vídeo começa a ser reproduzido.
 pause: Acionado quando a reprodução do vídeo é pausada.
 ended: Acionado quando a reprodução do vídeo é concluída.
-timeupdate: Acionado continuamente enquanto o vídeo está sendo reproduzido, indicando que o tempo atual do vídeo foi atualizado.
-seeked: Acionado após o usuário concluir uma busca (salto) para uma nova posição no vídeo.
+timeupdate: Acionado continuamente enquanto o vídeo está sendo 
+    reproduzido, indicando que o tempo atual do vídeo foi atualizado.
+seeked: Acionado após o usuário concluir uma busca (salto) para uma 
+    nova posição no vídeo.
 volumechange: Acionado quando o volume do vídeo é alterado.
-loadedmetadata: Acionado quando os metadados do vídeo, como duração e dimensões, são carregados.
+loadedmetadata: Acionado quando os metadados do vídeo, como duração e 
+    dimensões, são carregados.
 canplay: Acionado quando o navegador pode começar a reproduzir o vídeo.
-canplaythrough: Acionado quando o navegador determina que pode reproduzir o vídeo até o fim sem precisar parar para carregar mais dados.
+canplaythrough: Acionado quando o navegador determina que pode reproduzir 
+    o vídeo até o fim sem precisar parar para carregar mais dados.
 
 */
